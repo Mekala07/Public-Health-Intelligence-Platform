@@ -1,104 +1,122 @@
-# 🦠 Public Health Intelligence Platform
-
-*Submitted for the TAMU CSEGSA × Snowflake Hackathon 2026*  
-*Track 1: ML & AI Track — Social Good Prompt 01 (Public Health Trend Intelligence)*  
-
-**Watch the 3-Minute Demo Video:** [INSERT_YOUTUBE_OR_LOOM_LINK_HERE]
-
----
-
-## 🚀 Overview
-
-This project is an enterprise-grade intelligence platform running **100% natively inside Snowflake**. It combines the mathematical rigor of `SNOWFLAKE.ML.FORECAST` with the semantic reasoning of `SNOWFLAKE.CORTEX.COMPLETE('snowflake-arctic')` to deliver real-time public health intelligence and corporate risk guidance to decision-makers — all without a single byte of data leaving the Snowflake trust boundary.
-
-### Key Python Deliverables
-
-| File | Track | Purpose |
-|---|---|---|
-| `ml_ai_app.py` | **ML & AI Track** | The primary Executive Dashboard UI. Houses the forecasting visualizations, Cortex Generative AI directives, and the Fairness & MAPE Governance registry. |
-| `01_snowpark_engineering.py` | **ML & AI Track** | The backend data pipeline leveraging Snowpark DataFrame capabilities for 90-day feature engineering. |
-| `chat_bi_app.py` | **Bonus** | Conversational BI — Natural language querying of the epidemic datasets via the Cortex Analyst semantic YAML model. |
+<div align="center">
+  <img src="https://assets-global.website-files.com/6526ea02eab162fb1c49b6ce/6526eb063b46fcb20c291abf_snowflake-logo-blue.png" alt="Snowflake Logo" width="200"/>
+  <h1>🌍 Public Health Intelligence Platform</h1>
+  <p><b>Advanced Agentic Epidemiological Forecasting & Policy Generation</b></p>
+  <i>Submission for the TAMU CSEGSA × Snowflake Hackathon 2026 (ML & AI Track)</i>
+</div>
 
 ---
 
-## 🏗️ System Architecture
+## 🚀 Project Overview
 
-Our solution engineers data via Snowpark, passes it to a mathematical forecasting model, and finally injects that predictive data into a Generative AI prompt to produce business deliverables.
+The **Public Health Intelligence Platform** is an enterprise-grade, Snowflake-native decision support system. It transforms raw, fragmented global epidemiological data into proactive, risk-calibrated public health intelligence. Designed specifically for government officials and corporate executives, the platform utilizes advanced machine learning to forecast outbreak trajectories across **32 diverse global markets**, translating those predictions into actionable policy directives via Generative AI.
+
+This project was built from the ground up to achieve **100% compliance** with the Snowflake Hackathon Rubric across Technical Depth, Model Quality, Social Impact, and Innovation.
+
+---
+
+## 🧠 Core Technologies & Features
+
+*   **Snowpark Data Engineering:** Zero-copy, persistent feature engineering utilizing native `snowflake.snowpark.functions` to compute trailing features, rolling averages, and epidemiological doubling ratios.
+*   **Machine Learning (`SNOWFLAKE.ML.FORECAST`):** Evaluates 30-day case trajectories via univariate ML models dynamically trained on the latest available data, governed by strict Mean Absolute Percentage Error (MAPE) tracking.
+*   **Generative AI Gen-AI (`snowflake-arctic`):** Semantically interprets predictive risk data and demographic conditions to autonomously output plain-English government and corporate policy directives.
+*   **Conversational BI (Cortex Analyst):** A fully embedded, natural-language query terminal allowing stakeholders to interrogate complex health databases using semantic YAML data models.
+*   **Data Enrichment:** Native zero-copy joins against the `CYBERSYN_GOVERNMENT_ESSENTIALS` and `STARSCHEMA_COVID19` datasets hosted in the Snowflake Marketplace.
+
+## 📐 Platform Architecture
+
+The entire pipeline executes securely within the Snowflake Data Cloud, ensuring zero data egress and maximum computational efficiency.
 
 ```mermaid
-flowchart TD
-    subgraph Data Layer
-        A[(Starschema: COVID-19\nMarketplace Data)]
-        H[(Cybersyn Demographics\nPlatform Enrichment)]
+graph TD
+    %% Styling
+    classDef data fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff
+    classDef compute fill:#172033,stroke:#6366f1,stroke-width:2px,color:#fff
+    classDef ai fill:#312e81,stroke:#a5b4fc,stroke-width:2px,color:#fff
+    classDef app fill:#020617,stroke:#10b981,stroke-width:2px,color:#fff
+
+    subgraph "External Datasets (Snowflake Marketplace)"
+        A1[JHU COVID-19 Epidemiology]:::data
+        A2[Cybersyn Government Essentials]:::data
     end
 
-    subgraph Computational Pipeline
-        B[01_infrastructure_setup.sql]
-        C[Snowpark Feature Eng.]
-        D{SNOWFLAKE.ML.FORECAST}
-        E[(covid_forecast_model)]
-        F[(COVID_MODEL_METRICS\nReal MAPE per country)]
+    subgraph "Snowpark Pipeline"
+        B1(Data Extraction & Joining):::compute
+        B2(Feature Engineering):::compute
+        B3(Demographic Enrichment):::compute
     end
 
-    subgraph Presentation & GenAI 
-        J[ml_ai_app.py\nExecutive Dashboard]
-        K{Cortex Arctic\nGenerative AI}
-        L[Strategic Command\nSupply Chain Prompting]
+    subgraph "Snowflake ML & Cortex"
+        C1[SNOWFLAKE.ML.FORECAST <br> 30-Day Modeling]:::ai
+        C2[Cortex: snowflake-arctic <br> Narrative Generation]:::ai
+        C3[Cortex Analyst <br> Semantic SQL Engine]:::ai
     end
 
-    A --> B
-    B -->|7-Day Smoothing & Window Fns| C
-    C -->|AutoML Multi-Series| D
-    D --> E
-    E --> F
+    subgraph "Streamlit Application (ml_ai_app.py)"
+        D1[Tab 1: Public Surveillance <br> Global Mapping]:::app
+        D2[Tab 2: Corporate Decisions <br> LLM Directives]:::app
+        D3[Tab 3: Fairness & Registry <br> MAPE Truth]:::app
+        D4[Tab 4: Conversational BI <br> Natural Language Terminal]:::app
+    end
+
+    %% Flow
+    A1 & A2 --> B1
+    B1 --> B2 --> B3
+    B3 --> C1
     
-    H -->|Zero-Copy Join| C
+    C1 --> D1
+    C1 --> C2 --> D2
+    C1 --> D3
     
-    E -->|30-Day Inference| J
-    F -->|Calibration Score| J
-    
-    J -->|MAPE + Supply Chain Sliders| K
-    K --> L
+    B3 -. YAML Semantic Model .-> C3
+    C3 --> D4
 ```
 
 ---
 
-## 🎯 Hackathon Rubric Alignment
+## 🌎 Global Reach
 
-We engineered this platform specifically to exceed the 5 judging criteria required by the hackathon.
+The model is trained across a diverse footprint of **32 global markets**, strictly organized across **High**, **Upper-Middle**, and **Lower-Middle Income** groups to guarantee equitable analysis and avoid Western-centric data bias:
 
-| Judging Dimension | 🏆 Implementation & Justification |
-|---|---|
-| **Technical Depth (30 pts)** | Demonstrates advanced Snowflake capabilities including: `SNOWFLAKE.ML.FORECAST`, `CORTEX.COMPLETE` (`snowflake-arctic`), Cortex Analyst, Snowpark Python logic, and a dynamic Streamlit-in-Snowflake UI. |
-| **Model Quality (25 pts)** | Instead of black-box modeling, we built a transparent **MAPE Leaderboard** directly into the UI mapping the Mean Absolute Percentage Error for every country. |
-| **Social Impact (20 pts)** | A dedicated "Fairness & Registry" framework explicitly addresses testing infrastructure bias, income-group stratification, and per-capita normalization techniques. |
-| **Presentation (15 pts)** | Features a custom, glassmorphic "Dark Mode" UI executing perfectly in Streamlit. Contains a **"Demo Safety Net"** that dynamically simulates dummy ML and synthetic demographic data gracefully if Snowflake infrastructure execution is paused during the demo. |
-| **Innovation (10 pts)** | We don't just forecast cases. By combining predictive models with user-defined UI variables *(Supply Chain Reduction Sliders)* and injecting both into a Cortex LLM, our tool dynamically generates actionable Macro-Economic directives on the fly. |
+*   **Asia:** India, China, Japan, South Korea, Indonesia, Philippines, Vietnam, Thailand, Malaysia, Singapore, Pakistan, Bangladesh
+*   **North/South America:** United States, Canada, Mexico, Brazil, Argentina, Colombia, Peru
+*   **Europe:** France, Italy, United Kingdom, Germany, Spain, Russia, Turkey
+*   **Africa:** South Africa, Nigeria, Egypt, Kenya
+*   **Oceania:** Australia, New Zealand
 
 ---
 
-## ⚙️ Setup & Deployment Instructions
+## 🛠️ Deployment Instructions
 
-### Prerequisites
-1. Snowflake Trial Account.
-2. Mount **Starschema COVID-19 Epidemiological Data** from the Marketplace. Keep the default database name: `STARSCHEMA_COVID19`.
+To successfully deploy and run this application in your Snowflake environment:
 
-### 1. Build the Data Foundation
-1. Create a new SQL Worksheet.
-2. Paste the full contents of `01_infrastructure_setup.sql`.
-3. Click **Run All**.
-   - *This creates the `HACKATHON.DATA` schema, performs feature engineering, trains the multi-series forecasting model, and captures the MAPE test metrics.*
+### Step 1: Configure Marketplace Data
+1. Navigate to **Data Products** ➡️ **Marketplace** in Snowflake.
+2. Search for and get **Starschema COVID-19 Epidemiological Data**.
+3. *(Optional but Recommended)* Search for and get **Cybersyn Government Essentials**.
 
-### 2. (Optional) Run the Snowpark Pipeline
-1. Create a new **Python** Worksheet.
-2. Paste `01_snowpark_engineering.py` and click **Run**.
-   - *This fulfills the technical depth requirement by executing the transformations natively in Snowpark Python.*
+### Step 2: Establish the Infrastructure
+Execute the SQL script to provision databases, schemas, compute resources, and the baseline ML forecasting models.
+*   **File:** `01_infrastructure_setup.sql` 
+*   **Action:** Paste into a Snowflake SQL Worksheet and run all lines.
 
-### 3. Deploy the AI Dashboard
-1. Left nav → **Projects** → **Streamlit** → **+ Streamlit App**.
-2. **Settings**: Name = `Epidemic Forecasting` | Warehouse = `COMPUTE_WH` | Database = `HACKATHON` | Schema = `DATA`.
-3. Paste the contents of `ml_ai_app.py` and click **Run**.
+### Step 3: Run Snowpark Feature Engineering (Alternative)
+If you prefer a pure Python-native compute layer over standard SQL engineering, run the Snowpark equivalent.
+*   **File:** `01_snowpark_engineering.py`
+*   **Action:** Paste into a **Python Worksheet** and run.
+
+### Step 4: Launch the Streamlit Super-App
+Deploy the final, unified 4-tab Streamlit dashboard.
+*   **File:** `ml_ai_app.py`
+*   **Action:** Navigate to **Projects** ➡️ **Streamlit**, create a new App, paste the code, and hit Run. 
+*   *Note: Ensure the required packages (`pandas`, `numpy`, `altair`) are selected in the Streamlit package manager.*
 
 ---
 
-> **Note on Fairness & AI Calibration:** Every Cortex LLM prompt executed in the Strategic Command Center automatically consumes the mathematical MAPE score registered during the `ML.FORECAST` phase. The generative LLM is structurally instructed to "modulate its language confidence" based on the statistical reliability of the prediction, preventing severe AI hallucinations in our public health directives.
+## ⚖️ Hackathon Rubric Alignment
+
+1. **Technical Depth (30 pts):** Uses Snowpark for compute, `SNOWFLAKE.ML.FORECAST` for modeling, and zero-copy Marketplace data joins. The unified architecture ensures seamless scalability.
+2. **Model Quality & Forecast Accuracy (25 pts):** Models are governed by strict MAPE evaluations exposed directly in the UI (Tab 3). If data confidence is low, the platform explicitly adjusts its LLM recommendations.
+3. **Social Impact & Framing (20 pts):** Answers "Social Good Prompt 01". Expands analysis equitably to 32 countries and translates chaotic data into structured public policy outputs.
+4. **Presentation & Demo (15 pts):** A highly polished, glassmorphic UI layout with dark-mode visualization patterns and interactive Altair graphs. 
+5. **Innovation (10 pts):** Natively embeds the cutting-edge **Cortex Analyst** semantic processing engine within the dashboard to allow non-technical officials to chat directly with public health databases.

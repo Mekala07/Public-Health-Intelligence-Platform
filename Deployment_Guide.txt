@@ -1,0 +1,51 @@
+========================================================================
+IMPLEMENTATION GUIDE: Social Good 01 App
+========================================================================
+
+Follow this exact step-by-step process to implement your project in Snowflake 
+and submit it for the hackathon.
+
+------------------------------------------------------------------------
+PHASE 1: Deploying the Backend (Data & ML Compute)
+------------------------------------------------------------------------
+1. Log in to your Snowflake Trial Account.
+2. On the left-hand navigation menu, click 'Data', then click 'Marketplace'.
+3. Search for the exact phrase: "COVID-19 Epidemiological Data" (published by Starschema).
+4. Click the blue 'Get' button. Keep the database name as 'STARSCHEMA_COVID19' and confirm. (This instantly mounts the data to your account).
+5. On the left-hand menu, click 'Projects' -> 'Worksheets' -> '+ icon' (top right) to create a new SQL Worksheet.
+6. Open the '01_infrastructure_setup.sql' file on your computer, copy all the text, and paste it into the Snowflake worksheet.
+7. Click the blue 'Run All' button. Let it run for ~30 to 60 seconds. 
+*Note: This creates your HACKATHON database and physically trains your ML model in the background.*
+
+
+------------------------------------------------------------------------
+PHASE 2: Deploying the Frontend (Streamlit Dashboard)
+------------------------------------------------------------------------
+1. On the left-hand menu, click 'Projects' -> 'Streamlit'.
+2. Click the '+ Streamlit App' button (top right).
+3. Name it "Epidemic Forecasting", select Warehouse: 'COMPUTE_WH', and ensure the App Location is Database: 'HACKATHON' and Schema: 'DATA'. Click 'Create'.
+4. The Streamlit editor will open with some sample code. Delete all of it.
+5. Open your 'ml_ai_app.py' file on your computer, copy all the text, and paste it into the Snowflake Streamlit editor.
+6. Click the blue 'Run' button. Your dashboard will instantly render the charts and LLM summaries!
+
+
+------------------------------------------------------------------------
+PHASE 3: The Video Demo (Crucial for Judging!)
+------------------------------------------------------------------------
+1. Open up OBS, Loom, or Zoom and record your screen.
+2. Start the video and explain why you chose this architectural design. 
+3. Key talking points to secure 1st place:
+   - Show the SQL worksheet and explain that you pre-calculated 7-day rolling averages at the data layer to eliminate weekend reporting noise (shows high Quality).
+   - Show how fast the frontend loads and explain it is because you decoupled the SNOWFLAKE.ML.FORECAST algorithm to the backend (shows Technical Depth).
+   - Show the dashboard, specifically point out the MAPE score, and show how the Cortex LLM (snowflake-arctic) adapts its confidence based on that stat.
+   - Show the "Methodology & Fairness" tab and talk about testing bias (shows Real-World Impact).
+4. Upload the video to YouTube as "Unlisted".
+
+
+------------------------------------------------------------------------
+PHASE 4: Final GitHub Submission
+------------------------------------------------------------------------
+1. Open the 'README.md' file located in your desktop SNWFLAKE_HACKATHON folder.
+2. Replace [INSERT_YOUTUBE_OR_LOOM_LINK_HERE] with your actual YouTube link.
+3. Push the entire folder to a public repository on your GitHub account.
+4. Submit that GitHub URL to the Hackathon submission page!

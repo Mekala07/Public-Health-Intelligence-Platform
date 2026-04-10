@@ -1,4 +1,4 @@
-<div align="center">
+ <div align="center">
   <img src="https://assets-global.website-files.com/6526ea02eab162fb1c49b6ce/6526eb063b46fcb20c291abf_snowflake-logo-blue.png" alt="Snowflake Logo" width="200"/>
   <h1>🌍 Public Health Intelligence Platform</h1>
   <p><b>Advanced Agentic Epidemiological Forecasting & Policy Generation</b></p>
@@ -118,5 +118,5 @@ Deploy the final, unified 4-tab Streamlit dashboard.
 1. **Technical Depth (30 pts):** Uses Snowpark for compute, `SNOWFLAKE.ML.FORECAST` for modeling, and zero-copy Marketplace data joins. The unified architecture ensures seamless scalability.
 2. **Model Quality & Forecast Accuracy (25 pts):** Models are governed by strict MAPE evaluations exposed directly in the UI (Tab 3). If data confidence is low, the platform explicitly adjusts its LLM recommendations.
 3. **Social Impact & Framing (20 pts):** Answers "Social Good Prompt 01". Expands analysis equitably to 32 countries and translates chaotic data into structured public policy outputs.
-4. **Presentation & Demo (15 pts):** A highly polished, glassmorphic UI layout with dark-mode visualization patterns and interactive Altair graphs. 
+4. **Presentation & Demo (15 pts):** A highly polished, glassmorphic UI layout with dark-mode visualization patterns and interactive Altair graphs. Demo Link : https://youtu.be/9zYM4Xk9hdY
 5. **Innovation (10 pts):** Natively embeds the cutting-edge **Cortex Analyst** semantic processing engine within the dashboard to allow non-technical officials to chat directly with public health databases.
